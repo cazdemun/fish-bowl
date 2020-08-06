@@ -1,0 +1,31 @@
+.min-width-200 {
+  min-width: 200px;
+}
+
+.bg-primary {
+  background-color: #739ddb;
+}
+
+.bg-primary-light {
+  background-color: #a6ceff;
+}
+
+.bg-primary-dark {
+  background-color: #406fa9;
+}
+
+.bg-secondary {
+  background-color: #c673db;
+}
+
+.bg-secondary-light {
+  background-color: #faa4ff;
+}
+
+.bg-secondary-dark {
+  background-color: #9344a9;
+}
+
+.bg-empty {
+  background-color: #f5f5f6;
+}
