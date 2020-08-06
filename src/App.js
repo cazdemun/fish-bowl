@@ -85,7 +85,7 @@ const HistoryTable = ({ data = [], setHistory }) => (
               }}
             />
           </td>
-          <td>{r.point}</td>
+          <td>{r.point !== 0 ? r.point : "Keep up the good work."}</td>
         </tr>
       ))}
     </tbody>
@@ -132,7 +132,7 @@ export default function App() {
                     drawSlip()
                       .then(maybePoints => {
                         if (maybePoints === 0) {
-                          setLastSlip("Keep up the good work.");
+                          setLastSlip("Keep up the good work!");
                         } else {
                           setLastSlip(maybePoints);
                           setExp(exp + maybePoints);

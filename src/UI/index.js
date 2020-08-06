@@ -1,5 +1,7 @@
 import React from "react";
 
+// center full
+
 export const Row = ({ className = "", children }) => {
   const centerX = className.match(/center-x/g) ? " justify-center " : "";
   const centerY = className.match(/center-y/g) ? " items-center " : "";
