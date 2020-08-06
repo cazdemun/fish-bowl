@@ -116,7 +116,7 @@ export default function App() {
       <Row className="sidebar-content w-full h-full">
         {/* <Sidebar>Sidebar</Sidebar> */}
         <Content>
-          <Column className="panels flex-none center-x w-full h-full justify-around">
+          <Column className="panels flex-none center-x w-full h-full center-y">
             <Column className="left-panel bg-empty w-3/4 center-x mb-5">
               <h2 className="bg-secondary-dark w-full p-3 text-center text-white font-bold mb-3">
                 Left Panel
@@ -125,37 +125,39 @@ export default function App() {
               {exp}
               <h2>Last slip:</h2>
               <p className="text-center break-all">{lastSlip}</p>
-              <button
-                className="bg-secondary mb-5 mt-3 px-5 py-2 font-bold"
-                onClick={() =>
-                  drawSlip()
-                    .then(maybePoints => {
-                      if (maybePoints === 0) {
-                        setLastSlip("Keep up the good work.");
-                      } else {
-                        setLastSlip(maybePoints);
-                        setExp(exp + maybePoints);
-                      }
-                      return createRegister(maybePoints);
-                    })
-                    .then(newRegister => {
-                      setHistory([...history, newRegister]);
-                    })
-                    .catch(err => console.log(err))
-                }
-              >
-                Draw a slip!
-              </button>
-              <button
-                className="bg-secondary mb-5 mt-3 px-5 py-2 font-bold"
-                onClick={() => {
-                  setHistory([]);
-                  setExp(0);
-                  setLastSlip(0);
-                }}
-              >
-                Clear
-              </button>
+              <Row className="w-full center-x">
+                <button
+                  className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
+                  onClick={() =>
+                    drawSlip()
+                      .then(maybePoints => {
+                        if (maybePoints === 0) {
+                          setLastSlip("Keep up the good work.");
+                        } else {
+                          setLastSlip(maybePoints);
+                          setExp(exp + maybePoints);
+                        }
+                        return createRegister(maybePoints);
+                      })
+                      .then(newRegister => {
+                        setHistory([...history, newRegister]);
+                      })
+                      .catch(err => console.log(err))
+                  }
+                >
+                  Draw a slip!
+                </button>
+                <button
+                  className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
+                  onClick={() => {
+                    setHistory([]);
+                    setExp(0);
+                    setLastSlip(0);
+                  }}
+                >
+                  Clear
+                </button>
+              </Row>
             </Column>
             <Column className="right-panel bg-empty whitespace-normal w-3/4 center-x overflow-y-hidden max-h-full">
               <h2 className="bg-secondary-dark p-3 w-full text-center text-white font-bold">
