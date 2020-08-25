@@ -1,31 +1,12 @@
 import React, { useState } from "react";
-import { Row, Column } from "./UI";
+import { Layout, Row, Card, Button, Table, Col, Input } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons';
+import Routines from "./Routines";
 
-const Screen = ({ children }) => (
-  <Column className="w-screen h-screen bg-empty">{children}</Column>
-);
-
-const Header = ({ children }) => (
-  <Row className="w-full center-x bg-primary-dark font-bold text-white">
-    {children}
-  </Row>
-);
-
-// const Sidebar = ({ children }) => (
-//   <Column className="h-full w-4/12 min-width-200 center-y center-x bg-secondary">
-//     {children}
-//   </Column>
-// );
-
-const Content = ({ children }) => (
-  <Column className="w-full h-full center-x center-y py-10 bg-primary">
-    {children}
-  </Column>
-);
-
-const Footer = ({ children }) => (
-  <Row className="w-full center-x bg-primary-light font-bold">{children}</Row>
-);
+const { Header, Footer, Content } = Layout;
 
 const probability = n => !!n && Math.random() <= n;
 
@@ -48,49 +29,17 @@ const drawSlip = () =>
     }
   });
 
-const createRegister = points =>
+const createRegister = (points, name = "") =>
   new Promise((resolve, reject) => {
     const date = new Date();
     resolve({
-      point: points,
+      key: Math.random(),
+      point: points === 0 ? 'Keep up the good work!' : points,
       timestamp: Date.now(),
-      // date: date.toString(),
       date: dateToString(date),
-      metadata: ""
+      name: name
     });
   });
-
-const HistoryTable = ({ data = [], setHistory }) => (
-  <table className="w-full">
-    <thead className="w-full">
-      <tr>
-        <th>Date</th>
-        <th>Metadata</th>
-        <th>Points</th>
-      </tr>
-    </thead>
-    <tbody className="w-full">
-      {data.map((r, i) => (
-        <tr className="w-full">
-          <td>{r.date}</td>
-          {/* <td>{r.metadata}</td> */}
-          <td>
-            <input
-              value={r.metadata}
-              onChange={e => {
-                console.log(e.target.value);
-                const newHistory = [...data];
-                newHistory[i].metadata = e.target.value;
-                setHistory(newHistory);
-              }}
-            />
-          </td>
-          <td>{r.point !== 0 ? r.point : "Keep up the good work."}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-);
 
 const dateToString = d => {
   const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(d);
@@ -105,73 +54,126 @@ const dateToString = d => {
   return `${da}-${mo}-${ye} ${h}`;
 };
 
-export default function App() {
+const columns = [
+  {
+    title: 'Date',
+    dataIndex: 'date',
+    key: 'date',
+  },
+  {
+    title: 'Routine',
+    dataIndex: 'name',
+    key: 'name',
+    render: (_, record) => <Input placeholder='Enter routine name' defaultValue={record.name} />
+  },
+  {
+    title: 'Points',
+    dataIndex: 'point',
+    key: 'point',
+  }
+]
+
+const cardStyle = {
+  minWidth: "500px",
+  margin: "5px",
+  flex: "1",
+  wordBreak: "break-all",
+  textAlign: "center"
+}
+
+const AppContent = () => {
   const [exp, setExp] = useState(0);
-  const [lastSlip, setLastSlip] = useState(0);
+  const [lastSlip, setLastSlip] = useState("Keep up the good work!");
   const [history, setHistory] = useState([]);
 
-  return (
-    <Screen>
-      <Header>Fish Bowl (Beta)</Header>
-      <Row className="sidebar-content w-full h-full">
-        {/* <Sidebar>Sidebar</Sidebar> */}
-        <Content>
-          <Column className="panels flex-none center-x w-full h-full center-y">
-            <Column className="left-panel bg-empty w-3/4 center-x mb-5">
-              <h2 className="bg-secondary-dark w-full p-3 text-center text-white font-bold mb-3">
-                Left Panel
-              </h2>
-              <h2>Current exp:</h2>
-              {exp}
-              <h2>Last slip:</h2>
-              <p className="text-center break-all">{lastSlip}</p>
-              <Row className="w-full center-x">
-                <button
-                  className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
-                  onClick={() =>
-                    drawSlip()
-                      .then(maybePoints => {
-                        if (maybePoints === 0) {
-                          setLastSlip("Keep up the good work!");
-                        } else {
-                          setLastSlip(maybePoints);
-                          setExp(exp + maybePoints);
-                        }
-                        return createRegister(maybePoints);
-                      })
-                      .then(newRegister => {
-                        setHistory([...history, newRegister]);
-                      })
-                      .catch(err => console.log(err))
-                  }
-                >
-                  Draw a slip!
-                </button>
-                <button
-                  className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
-                  onClick={() => {
-                    setHistory([]);
-                    setExp(0);
-                    setLastSlip(0);
-                  }}
-                >
-                  Clear
-                </button>
-              </Row>
-            </Column>
-            <Column className="right-panel bg-empty whitespace-normal w-3/4 center-x overflow-y-hidden max-h-full">
-              <h2 className="bg-secondary-dark p-3 w-full text-center text-white font-bold">
-                History
-              </h2>
-              <div className="w-full overflow-y-auto max-h-full">
-                {/* <p className="break-all p-5">{JSON.stringify(history)}</p> */}
-                <HistoryTable data={history} setHistory={setHistory} />
-              </div>
-            </Column>
-          </Column>
-        </Content>
+  return <Col offset={4 / 2} span={20} style={{ width: "100%", padding: "5px" }}>
+    <Card title="Bowl" style={cardStyle}>
+      <h1>Current exp:</h1>
+      <p>{exp}</p>
+      <h1>Last slip:</h1>
+      <p>{lastSlip}</p>
+      <Row style={{ justifyContent: "center" }}>
+        <Button
+          className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
+          onClick={() =>
+            drawSlip()
+              .then(maybePoints => {
+                if (maybePoints === 0) {
+                  setLastSlip("Keep up the good work!");
+                } else {
+                  setLastSlip(maybePoints);
+                  setExp(exp + maybePoints);
+                }
+                return createRegister(maybePoints);
+              })
+              .then(newRegister => {
+                setHistory([...history, newRegister]);
+              })
+              .catch(err => console.log(err))
+          }
+        >
+          Draw a slip!
+          </Button>
+        <Button
+          className="bg-secondary mx-3 mb-5 mt-3 px-5 py-2 font-bold"
+          onClick={() => {
+            setHistory([]);
+            setExp(0);
+            setLastSlip("Keep up the good work!");
+          }}
+        >
+          Clear
+          </Button>
       </Row>
-      <Footer>cazdemun / anurbanlion</Footer>
-    </Screen>
+    </Card>
+    <Routines drawSlip={(name, points) => {
+      [...Array(points).keys()]
+        .map(_ =>
+          drawSlip()
+            .then(maybePoints => {
+              if (maybePoints === 0) {
+                setLastSlip("Keep up the good work!");
+              } else {
+                setLastSlip(maybePoints);
+                setExp(exp + maybePoints);
+              }
+              return createRegister(maybePoints, name);
+            })
+            .then(newRegister => {
+              setHistory([...history, newRegister]);
+            })
+            .catch(err => console.log(err)));
+    }} />
+    <Card title="History" style={cardStyle}>
+      <Table tableLayout="fixed" pagination={{ defaultPageSize: 5 }} columns={columns} dataSource={history} />
+    </Card>
+  </Col>
+}
+
+const App = () => {
+  const [state, setState] = useState({ collapsed: false });
+
+  return (
+    <Layout className="site-layout">
+      <Header className="site-layout-background" style={{ padding: 0 }}>
+        {React.createElement(state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+          className: 'trigger',
+          onClick: () => setState({ collapsed: !state.collapsed }),
+        })}
+        <h1 style={{ flex: "1", color: "white", fontWeight: "bold", textAlign: "center" }}>Fish Bowl (Beta)</h1>
+      </Header>
+      <Content
+        style={{
+          padding: 24,
+          minHeight: 280,
+          overflowY: "auto"
+        }}
+      >
+        <AppContent />
+      </Content>
+      <Footer style={{ textAlign: "right", fontWeight: "bold" }}>Created by cazdemun</Footer>
+    </Layout>
   );
 }
+
+export default App;

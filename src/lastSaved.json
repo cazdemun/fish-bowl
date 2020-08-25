@@ -1,0 +1,86 @@
+[
+  {
+    "key": "Mañana",
+    "name": "Mañana",
+    "children": [
+      {
+        "key": "Meditar",
+        "name": "Meditar  (15 minutos)",
+        "points": 1
+      },
+      {
+        "key": "Ejercicio",
+        "name": "Ejercicio (20 lagartijas)",
+        "points": 1
+      },
+      {
+        "key": "Aseo",
+        "name": "Aseo",
+        "children": [
+          {
+            "key": "Lavar Cara",
+            "name": "Lavar Cara",
+            "points": 1
+          },
+          {
+            "key": "Lavar Pelo",
+            "name": "Lavar Pelo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "key": "Desayuno",
+        "name": "Desayuno (evitar embutidos)",
+        "points": 1
+      },
+      {
+        "key": "Trabajo",
+        "name": "Trabajo (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "Trabajo 2",
+        "name": "Trabajo 2 (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "Investigaciones",
+        "name": "Investigaciones sobre la voluntad",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "key": "Tarde",
+    "name": "Tarde",
+    "children": [
+      {
+        "key": "Meditar - Tarde",
+        "name": "Meditar  - Tarde (10 minutos)",
+        "points": 1
+      },
+      {
+        "key": "Momento creativo ",
+        "name": "Momento creativo (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "Estudio",
+        "name": "Estudio (1 pomodoro)",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "key": "Noche",
+    "name": "Noche",
+    "children": [
+      {
+        "key": "Meditar - Noche",
+        "name": "Meditar  - Noche (10 minutos)",
+        "points": 1
+      }
+    ]
+  }
+]
