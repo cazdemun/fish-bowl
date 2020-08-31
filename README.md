@@ -6,5 +6,8 @@ Deployed on Github Pages following this [guide](https://stackoverflow.com/questi
 
 ## TODO:
 
-[] Change offset of last columns so it doesn't take that much space
 [] Update changelog
+[] Clean a lot of the style logic (maybe remove tailwind?)
+[] Save a global history
+[] Support for deletion
+[] Importing, uploading and deleting history

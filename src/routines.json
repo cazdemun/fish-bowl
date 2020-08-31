@@ -1,0 +1,95 @@
+[
+  {
+    "key": "4d6c7a7b-6487-4c73-b2f3-6920976a7f2d",
+    "name": "Mañana",
+    "children": [
+      {
+        "key": "fb5d9174-cfb3-448a-9ecb-1a2aa876952d",
+        "name": "Levantarse a las 7:30",
+        "points": 1
+      },
+      {
+        "key": "1f0fd68b-ea84-4f70-befe-3b11a20860cd",
+        "name": "Meditar  (15 minutos)",
+        "points": 1
+      },
+      {
+        "key": "91576160-2aae-4ce1-bb56-48711821926d",
+        "name": "Tender cama",
+        "points": 1
+      },
+      {
+        "key": "Ejercicio",
+        "name": "Ejercicio (HIT + 20 push-ups)",
+        "points": 1
+      },
+      {
+        "key": "eaa600e7-2a69-4c78-9301-f05049611ffc",
+        "name": "Ducha",
+        "points": 3
+      },
+      {
+        "key": "40ce2e06-48e5-4de9-b59b-a099b2498b7c",
+        "name": "Desayuno (Proteína + Glucosa)",
+        "points": 1
+      },
+      {
+        "key": "a069d31f-68b9-46ff-83da-946d26600064",
+        "name": "Ordenar/Limpiar/Lavar",
+        "points": 1
+      },
+      {
+        "key": "d2b42619-cff9-49a1-a8b9-af39fb9f37ed",
+        "name": "Trabajo (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "d1ff162c-08ac-41b7-87f8-972fb986ecbd",
+        "name": "Trabajo 2 (1 pomodoro)",
+        "points": 1
+      },
+      {
+        "key": "a61042fd-d0be-47e3-8479-e313fc63d886",
+        "name": "Investigaciones sobre la voluntad (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "e41f7ff8-f01e-4d11-859e-e829f1aa5855",
+        "name": "Registro en el Journal",
+        "points": 1
+      }
+    ]
+  },
+  {
+    "key": "Tarde",
+    "name": "Tarde",
+    "children": [
+      {
+        "key": "Meditar - Tarde",
+        "name": "Meditar  - Tarde (10 minutos)",
+        "points": 1
+      },
+      {
+        "key": "Momento creativo ",
+        "name": "Momento creativo (1 pomodoro)",
+        "points": 3
+      },
+      {
+        "key": "Estudio",
+        "name": "Estudio (1 pomodoro)",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "key": "Noche",
+    "name": "Noche",
+    "children": [
+      {
+        "key": "Meditar - Noche",
+        "name": "Meditar  - Noche (10 minutos)",
+        "points": 1
+      }
+    ]
+  }
+]

@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 // import "./tailwind.extras.css";
 import "./index.css";
 
-import App from "./App";
+import App from "./app/App";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
